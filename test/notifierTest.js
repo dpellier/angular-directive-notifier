@@ -1,32 +1,19 @@
 'use strict';
 
 describe('Directive: notifier', function() {
-    var scope, element;
+    var scope;
 
     /**
      * Setup
      */
 
-    beforeEach(module('notifierDirective'));
-    beforeEach(module('app/notifier.html'));
+    beforeEach(module('notifier'));
 
-    beforeEach(inject(function($rootScope, $compile, $httpBackend, $templateCache) {
+    beforeEach(inject(function($rootScope, $compile) {
         scope = $rootScope;
-        $httpBackend.whenGET('notifier.html').respond($templateCache.get('app/notifier.html'));
 
-        element = angular.element('<notifier></notifier>');
-        $compile(element)(scope);
+        $compile(angular.element('<notifier></notifier>'))(scope);
         scope.$digest();
-        $httpBackend.flush();
-    }));
-
-    /**
-     * Tear Down
-     */
-
-    afterEach(inject(function($httpBackend) {
-        $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest();
     }));
 
     /**

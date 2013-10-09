@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module('notifierDirective', []);
+angular.module('notifier', []);
 
-angular.module('notifierDirective').directive('notifier', function($timeout) {
+angular.module('notifier').directive('notifier', function($timeout) {
     return {
-        templateUrl: 'notifier.html',
         replace: true,
         restrict: 'E',
         link: function(scope) {
@@ -16,6 +15,11 @@ angular.module('notifierDirective').directive('notifier', function($timeout) {
                     scope.notification = undefined;
                 }, scope.notification.duration || 2000);
             });
-        }
+        },
+        template: '<div class="alert {{notification.type}}" ng-show="notification"'
+            + '     style="position: fixed; text-align: center; right: 0; left: 0; width: 50%; margin: auto; z-index: 99;">'
+            + '    <button type="button" class="close" ng-click="notification = undefined">&times;</button>'
+            + '    {{notification.message}}'
+            + '</div>'
     };
 });

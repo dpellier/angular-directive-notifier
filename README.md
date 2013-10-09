@@ -13,7 +13,12 @@ You can add this directive as a dependency with bower :
 "notifier": "git://github.com/dpellier/angular-directive-notifier"
 ```
 
-Or you can just add directly the script and the view in your application.
+Or you can just add directly the script in your application.
+
+Include the script and add the dependency into your app.
+```
+angular.module('myModule', ['notifier']);
+```
 
 Usage
 =====
@@ -29,6 +34,7 @@ To make a notification appear, you have to emit a 'notify' event with your messa
 ```
 $rootScope.$emit('notify', {
   type: 'info',             // type can be 'info', 'success', 'warn' or 'error'
-  message: 'your message'
+  message: 'your message',
+  duration: 2000            // [Optional] default value is 2000
 });
 ```
